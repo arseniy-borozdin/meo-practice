@@ -6,6 +6,7 @@ namespace SpaceSensor
     {
         static void Main(string[] args)
         {
+            // Инициализируем переменные
             string analystName;
             int n;
             int[] radiation;
@@ -13,6 +14,7 @@ namespace SpaceSensor
             int minValue;
             int minIndex;
             string planetStatus = "";
+            // Вызываем методы
             InputAnalystName(out analystName);
             InputSizeArray(out n);
             radiation = InputValuesArray(n);
@@ -22,6 +24,7 @@ namespace SpaceSensor
             PrintAllInfo(analystName, radiation, sum, minValue, minIndex, planetStatus);
             Console.ReadLine();
         }
+        // Записываем в переменную имя аналитика
         static void InputAnalystName(out string analystName)
         {
             Console.Write("Введите имя аналитика: ");
@@ -31,6 +34,7 @@ namespace SpaceSensor
                 analystName = "Неизвестный аналитик";
             }
         }
+        // Записываем в переменную размер массива
         static void InputSizeArray(out int n)
         {
             Console.Write("Введите размер массива(от 3 до 20): ");
@@ -40,6 +44,7 @@ namespace SpaceSensor
                 n = 3;
             }
         }
+        // Заполняем массив элементами
         static int[] InputValuesArray(int n)
         {
             int[] array = new int[n];
@@ -60,6 +65,7 @@ namespace SpaceSensor
             }
             return array;
         }
+        // Вычисляем сумму
         static void CalculatingSum(int[] radiation, out long sum)
         {
             sum = 0;
@@ -68,26 +74,28 @@ namespace SpaceSensor
                 sum = sum + radiation[i];
             }
         }
-        static void SearchMinValue(int[] radiation,out int minValue, out int minIndex)
+        // Ищем минимальный уровень радиации и его индекс в массиве
+        static void SearchMinValue(int[] radiation, out int minValue, out int minIndex)
         {
             minValue = radiation[0];
             minIndex = 0;
-            for(int i = 1; i < radiation.Length; i++)
+            for (int i = 1; i < radiation.Length; i++)
             {
-                if(radiation[i] < minValue)
+                if (radiation[i] < minValue)
                 {
                     minValue = radiation[i];
                     minIndex = i;
                 }
             }
         }
+        // Вычисляем статус планеты
         static void CalculationPlanetStatus(long sum, int minValue, out string planetStatus)
         {
-            if(minValue < 200 && sum < 5000)
+            if (minValue < 200 && sum < 5000)
             {
                 planetStatus = "Безопасная зона";
             }
-            else if(minValue < 500 && sum < 7000)
+            else if (minValue < 500 && sum < 7000)
             {
                 planetStatus = "Нестабильная зона";
             }
@@ -96,11 +104,12 @@ namespace SpaceSensor
                 planetStatus = "Опасная зона";
             }
         }
+        // Выводим всю информацию
         static void PrintAllInfo(string analystName, int[] radiation, long sum, int minValue, int minIndex, string planetStatus)
         {
             Console.WriteLine($"Имя аналитика: {analystName}");
             Console.WriteLine("Радиация на планете: ");
-            foreach(int rad in radiation)
+            foreach (int rad in radiation)
             {
                 Console.Write(rad + " ");
             }
